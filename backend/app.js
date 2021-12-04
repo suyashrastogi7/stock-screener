@@ -1,6 +1,7 @@
 // var API = require('indian-stock-exchange');
 var express = require("express");
 var API = require('./index');
+var path = require('path');
 var cors = require('cors');
 require("dotenv").config();
 
@@ -11,6 +12,7 @@ const PORT = process.env.PORT || 3000;
 var app = express();
 
 app.use(cors());
+app.use(express.static(path.join(__dirname, '../frontend/build')));
 
 app.listen(PORT, () => {
   console.log("Server running on port " + PORT);
@@ -20,7 +22,7 @@ app.listen(PORT, () => {
 
 // Get the stock market status (open/closed) - JSON
 // Example: http://localhost:3000/get_market_status
-app.get("/get_market_status", (req, res, next) => {
+app.get("/nse/get_market_status", (req, res, next) => {
   NSEAPI.getMarketStatus()
     .then(function (response) {
       res.json(response.data);
@@ -266,5 +268,11 @@ app.get("/bse/getTopTurnOvers", (req, res, next) => {
       res.json(response.data);
     });
 });
+
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'../frontend/build/index.html'));
+});
+
 
 module.exports = app;
