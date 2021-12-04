@@ -6,7 +6,7 @@ const Losers = () => {
     const [response, setResponse] = useState({});
 
     useEffect(() => {
-        fetch(`http://localhost:5000/nse/get_losers`)
+        fetch(`/nse/get_losers`)
             .then(resp => resp.json())
             .then(data => {
                 setResponse(data)

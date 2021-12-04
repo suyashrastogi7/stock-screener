@@ -11,9 +11,8 @@ const StockRow = ({ symbol }) => {
 
     const fetchData = async () => {
         try {
-            const res = await fetch(`http://localhost:5000/nse/get_quote_info?companyName=${symbol}`)
+            const res = await fetch(`/nse/get_quote_info?companyName=${symbol}`)
             setResponse(await res.json());
-            console.log("RES: ", res)
         }
         catch (err) {
             console.error(err);

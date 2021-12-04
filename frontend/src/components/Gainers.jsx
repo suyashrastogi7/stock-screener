@@ -6,7 +6,7 @@ const Gainers = () => {
     const [response, setResponse] = useState({});
 
     useEffect(() => {
-        fetch(`http://localhost:5000/nse/get_gainers`)
+        fetch(`/nse/get_gainers`)
             .then(resp => resp.json())
             .then(data => {
                 setResponse(data)

@@ -19,7 +19,7 @@ const Modal = ({ stocks, setStocks }) => {
         const data = new FormData(e.target);
         //setInput(`${data.get('symbol')}`)
         let stockSymbol = data.get('symbol').toUpperCase();
-        const res = await fetch(`http://localhost:5000/nse/get_quote_info?companyName=${data.get('symbol')}`)
+        const res = await fetch(`/nse/get_quote_info?companyName=${data.get('symbol')}`)
             if(res.ok===true) {
                 if((stocks.find(x => x.name === stockSymbol)===undefined)) {
                     setStocks([

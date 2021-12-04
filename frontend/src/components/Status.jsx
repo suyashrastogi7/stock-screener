@@ -6,7 +6,7 @@ const Status = () => {
     const [response, setResponse] = useState("");
 
     useEffect(() => {
-        fetch("http://localhost:5000/nse/get_market_status")
+        fetch("/nse/get_market_status")
             .then(resp => resp.json())
             .then(data => setResponse(data.status))
     }, []);
