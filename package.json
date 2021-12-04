@@ -5,8 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js 5000",
-    "heroku-postbuild": "npm start && cd frontend && npm install && npm run build"
+    "start": "node app.js",
+    "heroku-postbuild": "cd frontend && npm install && npm run build"
   },
   "keywords": [
     "api",
