@@ -7,7 +7,7 @@ require("dotenv").config();
 
 var BSEAPI = API.BSE;
 var NSEAPI = API.NSE;
-const PORT = process.env.PORT || 5000;
+const PORT = 5000;
 
 var app = express();
 
