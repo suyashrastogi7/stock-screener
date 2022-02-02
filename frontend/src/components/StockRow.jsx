@@ -3,6 +3,8 @@ import { css } from "@emotion/react";
 import ChartModal from "./ChartModal"
 import HashLoader from "react-spinners/HashLoader";
 import { BiLineChart } from 'react-icons/bi'
+// import { HiOutlineTrash } from 'react-icons/hi'
+// import { IconContext } from "react-icons";
 
 const StockRow = ({ symbol }) => {
 
@@ -11,7 +13,7 @@ const StockRow = ({ symbol }) => {
 
     const fetchData = async () => {
         try {
-            const res = await fetch(`/nse/get_quote_info?companyName=${symbol}`)
+            const res = await fetch(`http://localhost:5000/nse/get_quote_info?companyName=${symbol}`)
             setResponse(await res.json());
         }
         catch (err) {
@@ -115,6 +117,11 @@ const StockRow = ({ symbol }) => {
                                 <BiLineChart /> <span className="text-sm ml-1">Chart</span>
                             </button>
                         </td>
+                        {/* <td>
+                            <IconContext.Provider value={{ color: "rgb(235, 46, 46)", size: "1.25em"}}>
+                                <HiOutlineTrash onClick={()=> removeStock()}/>
+                            </IconContext.Provider>
+                        </td> */}
                     </tr>
                     {showChartModal ?
                         <ChartModal

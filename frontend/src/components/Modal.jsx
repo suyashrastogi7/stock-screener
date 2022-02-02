@@ -18,16 +18,24 @@ const Modal = ({ stocks, setStocks }) => {
         e.preventDefault();
         const data = new FormData(e.target);
         //setInput(`${data.get('symbol')}`)
+        var localStocks = JSON.parse(sessionStorage.getItem("localStocks") || "[]");
         let stockSymbol = data.get('symbol').toUpperCase();
         const res = await fetch(`/nse/get_quote_info?companyName=${data.get('symbol')}`)
             if(res.ok===true) {
-                if((stocks.find(x => x.name === stockSymbol)===undefined)) {
+                if((localStocks.find(x => x.name === stockSymbol)===undefined)) {
                     setStocks([
                         ...stocks,
                         {
                             name: stockSymbol
-                        }
+                        },
                     ]);
+                    // Trying to persist data in localStorage
+                    var singleStock = {
+                        name: stockSymbol,
+                    };
+                    localStocks.push(singleStock);
+                    sessionStorage.setItem("localStocks", JSON.stringify(localStocks));
+                    window.location.reload();
                     setShowModal(false);
                 } else {
                     setExists(true);

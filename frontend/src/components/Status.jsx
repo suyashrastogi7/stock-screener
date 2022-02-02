@@ -6,7 +6,7 @@ const Status = () => {
     const [response, setResponse] = useState("");
 
     useEffect(() => {
-        fetch("/nse/get_market_status")
+        fetch("https://stock-screener1.herokuapp.com/nse/get_market_status")
             .then(resp => resp.json())
             .then(data => setResponse(data.status))
     }, []);
